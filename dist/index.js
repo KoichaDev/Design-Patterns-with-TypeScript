@@ -459,7 +459,96 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"7PGg5":[function(require,module,exports) {
-console.log('s');
+var _nullPattern = require("./null-pattern/null-pattern");
+_nullPattern.printUser(3);
+
+},{"./null-pattern/null-pattern":"iXG8U"}],"iXG8U":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "printUser", ()=>printUser
+);
+var _user = require("./User");
+var _userDefault = parcelHelpers.interopDefault(_user);
+const users = [
+    new _userDefault.default(1, 'Bob'),
+    new _userDefault.default(2, 'John')
+];
+function getUserId(id) {
+    return users.find((user)=>user.id === id
+    );
+}
+function printUser(id) {
+    const user = getUserId(id);
+    /**
+	 * We need to explicitly tell the console.log to print a "Guest" if the user
+	 * does not have a name
+	 *
+	 * This is problematic, since we need to remember to always put
+	 * this every time we use the user name.
+	 *
+	 * It is also bad because if we want to print "Unknown user"
+	 * instead, we should need to change every place that we put "Guest"
+	 * which will most likely be all over the application
+	 */ let name = 'Guest';
+    if (user != null && user?.name != null) // Add Non-null assertion operator
+    // src: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator
+    name = user?.name;
+    console.log(`Hello ${name}`);
+    /**
+	 * This will throw an error if we don't first check that the user
+	 * object has this function available and isn't null.
+	 *
+	 * This is a lot of extra code to add in every time we want to
+	 * check user access, and could cause bugs that are easy to miss
+	 * if we forget to do the null checks
+	 *
+	 */ if (user !== null && user?.hasAcces !== null && user?.hasAcces()) console.log('You have access');
+    else console.log('You are not allowed');
+}
+
+},{"./User":"Ulsh0","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"Ulsh0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class User {
+    constructor(id, name){
+        this.id = id;
+        this.name = name;
+    }
+    hasAcces() {
+        return this.name === 'Bob';
+    }
+}
+exports.default = User;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
 },{}]},["2HtCd","7PGg5"], "7PGg5", "parcelRequire40c0")
 
