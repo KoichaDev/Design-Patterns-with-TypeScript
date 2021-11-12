@@ -3,10 +3,10 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
-	"source": "src/index.ts",
+	"source": "src/main.ts",
 	"scripts": {
-		"dev": "parcel src/index.ts",
-    "prod": "parcel build src/index.ts"
+		"dev": "parcel src/main.ts",
+		"prod": "parcel build src/main.ts"
 	},
 	"repository": {
 		"type": "git",

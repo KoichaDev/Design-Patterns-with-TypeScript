@@ -76,5 +76,5 @@
     // including files we want to use on our project
     "src/**/*.ts",
     "src/analytics.ts"
-, "src/index.ts"  ]
+, "src/main.ts"  ]
 }

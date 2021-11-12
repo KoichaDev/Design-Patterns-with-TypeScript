@@ -140,12 +140,12 @@
       this[globalName] = mainExports;
     }
   }
-})({"2HtCd":[function(require,module,exports) {
+})({"11zn2":[function(require,module,exports) {
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "4a236f9275d0a351";
-module.bundle.HMR_BUNDLE_ID = "222e65dabdea7d65";
+module.bundle.HMR_BUNDLE_ID = "3a6cf3c0e7f05703";
 "use strict";
 function _createForOfIteratorHelper(o, allowArrayLike) {
     var it;
@@ -458,58 +458,36 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"7PGg5":[function(require,module,exports) {
-var _nullPattern = require("./01-null-pattern/null-pattern");
-_nullPattern.printUser(3);
+},{}],"jZgE0":[function(require,module,exports) {
+// import { printUser } from './01-null-pattern/null-pattern';
+// printUser(3)
+var _index = require("./02-build-pattern/index");
 
-},{"./01-null-pattern/null-pattern":"6lH06"}],"6lH06":[function(require,module,exports) {
+},{"./02-build-pattern/index":"3ZBUq"}],"3ZBUq":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _user = require("./Classes/User");
+var _userDefault = parcelHelpers.interopDefault(_user);
+var _address = require("./Classes/Address");
+var _addressDefault = parcelHelpers.interopDefault(_address);
+/**
+ * The user classe could be much more complex when we have email, password authentication token, address could be more complex with 
+ * like state country all the extra stuff, but this is just a dumbed down version of what we could be using the builder pattern for
+ */ const user = new _userDefault.default('Bob', undefined, undefined, new _addressDefault.default('1', 'St. Main'));
+console.dir(user);
+
+},{"./Classes/User":"bKkFQ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./Classes/Address":"2vl83"}],"bKkFQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "printUser", ()=>printUser
-);
-var _user = require("./User");
-const users = [
-    new _user.User(1, 'Bob'),
-    new _user.User(2, 'John')
-];
-function getUserId(id) {
-    const user1 = users.find((user)=>user.id === id
-    );
-    if (user1 === null || user1 === undefined) return new _user.NullUser();
-    return user1;
-}
-function printUser(id) {
-    const user = getUserId(id);
-    console.log(`Hello ${user.name}`);
-    if (user?.hasAcces()) return console.log('You have access');
-    console.log('You are not allowed');
-}
-
-},{"./User":"6Eb7c","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6Eb7c":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "User", ()=>User
-);
-parcelHelpers.export(exports, "NullUser", ()=>NullUser
-);
 class User {
-    constructor(id, name){
-        this.id = id;
+    // This construction is optional, since the user doesn't really need to add those age, phone number, etc.
+    constructor(name, age, phone, address){
         this.name = name;
-    }
-    hasAcces() {
-        return this.name === 'Bob';
-    }
-}
-class NullUser {
-    constructor(){
-        this.id = -1;
-        this.name = 'Guest';
-    }
-    hasAcces() {
-        return false;
+        this.age = age;
+        this.phone = phone;
+        this.address = address;
     }
 }
+exports.default = User;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -541,6 +519,17 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["2HtCd","7PGg5"], "7PGg5", "parcelRequire40c0")
+},{}],"2vl83":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class Address {
+    constructor(zip, street){
+        this.zip = zip;
+        this.street = street;
+    }
+}
+exports.default = Address;
 
-//# sourceMappingURL=index.js.map
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["11zn2","jZgE0"], "jZgE0", "parcelRequire40c0")
+
+//# sourceMappingURL=main.js.map
