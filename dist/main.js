@@ -465,31 +465,12 @@ var _index = require("./02-build-pattern/index");
 
 },{"./02-build-pattern/index":"3ZBUq"}],"3ZBUq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _user = require("./Classes/User");
-var _userDefault = parcelHelpers.interopDefault(_user);
-var _address = require("./Classes/Address");
-var _addressDefault = parcelHelpers.interopDefault(_address);
-/**
- * The user classe could be much more complex when we have email, password authentication token, address could be more complex with 
- * like state country all the extra stuff, but this is just a dumbed down version of what we could be using the builder pattern for
- */ const user = new _userDefault.default('Bob', undefined, undefined, new _addressDefault.default('1', 'St. Main'));
+var _userBuilder = require("./Classes/UserBuilder");
+var _userBuilderDefault = parcelHelpers.interopDefault(_userBuilder);
+const user = new _userBuilderDefault.default('Bob').setAge(19).setAddress("ajjajaja").build();
 console.dir(user);
 
-},{"./Classes/User":"bKkFQ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./Classes/Address":"2vl83"}],"bKkFQ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-class User {
-    // This construction is optional, since the user doesn't really need to add those age, phone number, etc.
-    constructor(name, age, phone, address){
-        this.name = name;
-        this.age = age;
-        this.phone = phone;
-        this.address = address;
-    }
-}
-exports.default = User;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./Classes/UserBuilder":"gX1Ai"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -519,16 +500,45 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"2vl83":[function(require,module,exports) {
+},{}],"gX1Ai":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-class Address {
-    constructor(zip, street){
-        this.zip = zip;
-        this.street = street;
+var _user = require("./User");
+var _userDefault = parcelHelpers.interopDefault(_user);
+class UserBuilder {
+    constructor(name){
+        this.user = {
+        };
+        this.user = new _userDefault.default(name);
+    }
+    setAge(age) {
+        this.user.age = age;
+        //  This will returning the builder back. This allow us to chain these methods together
+        return this;
+    }
+    setPhone(phone) {
+        this.user.phone = phone;
+        return this;
+    }
+    setAddress(address) {
+        this.user.address = address;
+        return this;
+    }
+    build() {
+        return this.user;
     }
 }
-exports.default = Address;
+exports.default = UserBuilder;
+
+},{"./User":"bKkFQ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bKkFQ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class User {
+    constructor(name){
+        this.name = name;
+    }
+}
+exports.default = User;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["11zn2","jZgE0"], "jZgE0", "parcelRequire40c0")
 
