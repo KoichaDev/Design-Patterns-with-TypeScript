@@ -1,3 +1,3 @@
-import { printUser } from './null-pattern/null-pattern';
+import { printUser } from './01-null-pattern/null-pattern';
 
 printUser(3)
