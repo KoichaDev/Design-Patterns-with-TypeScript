@@ -465,12 +465,34 @@ var _index = require("./02-build-pattern/index");
 
 },{"./02-build-pattern/index":"3ZBUq"}],"3ZBUq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _userBuilder = require("./Classes/UserBuilder");
-var _userBuilderDefault = parcelHelpers.interopDefault(_userBuilder);
-const user = new _userBuilderDefault.default('Bob').setAge(19).setAddress("ajjajaja").build();
-console.dir(user);
+var _address = require("./Classes/Address");
+var _addressDefault = parcelHelpers.interopDefault(_address);
+var _user = require("./Classes/User");
+var _userDefault = parcelHelpers.interopDefault(_user);
+const user = new _userDefault.default('bob', {
+    age: 5,
+    phone: '999 222 999',
+    address: new _addressDefault.default('222 ', 'London')
+});
+console.log(user);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./Classes/UserBuilder":"gX1Ai"}],"ciiiV":[function(require,module,exports) {
+},{"./Classes/User":"bKkFQ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./Classes/Address":"2vl83"}],"bKkFQ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class User {
+    constructor(name, { age , phone , address  } = {
+    }){
+        this.name = name;
+        this.age = 0;
+        this.phone = '123';
+        this.age = age;
+        this.phone = phone;
+        this.address = address;
+    }
+}
+exports.default = User;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -500,45 +522,16 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"gX1Ai":[function(require,module,exports) {
+},{}],"2vl83":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _user = require("./User");
-var _userDefault = parcelHelpers.interopDefault(_user);
-class UserBuilder {
-    constructor(name){
-        this.user = {
-        };
-        this.user = new _userDefault.default(name);
-    }
-    setAge(age) {
-        this.user.age = age;
-        //  This will returning the builder back. This allow us to chain these methods together
-        return this;
-    }
-    setPhone(phone) {
-        this.user.phone = phone;
-        return this;
-    }
-    setAddress(address) {
-        this.user.address = address;
-        return this;
-    }
-    build() {
-        return this.user;
+class Address {
+    constructor(zip, street){
+        this.zip = zip;
+        this.street = street;
     }
 }
-exports.default = UserBuilder;
-
-},{"./User":"bKkFQ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bKkFQ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-class User {
-    constructor(name){
-        this.name = name;
-    }
-}
-exports.default = User;
+exports.default = Address;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["11zn2","jZgE0"], "jZgE0", "parcelRequire40c0")
 

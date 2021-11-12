@@ -1,11 +1,5 @@
 class Address {
-	zip?: string;
-	street?: string;
-
-	constructor(zip?: string, street?: string) {
-		this.zip = zip;
-		this.street = street;
-	}
+	constructor(public zip?: string, public street?: string) {}
 }
 
 export default Address;
